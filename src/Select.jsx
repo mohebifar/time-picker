@@ -58,15 +58,20 @@ const Select = React.createClass({
       });
       let onclick = null;
       if (!item.disabled) {
-        onclick = this.onSelect.bind(this, +item.value);
+        let value = +item.value;
+        if (Number.isNaN(value)) {
+          value = item.value;
+        }
+        onclick = this.onSelect.bind(this, value);
       }
+
       return (<li
         className={cls}
         key={index}
         onClick={onclick}
         disabled={item.disabled}
       >
-        {item.value}
+        {typeof item.label !== 'undefined' ? item.label : item.value}
       </li>);
     });
   },

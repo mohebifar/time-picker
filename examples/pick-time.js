@@ -9,7 +9,7 @@ import moment from 'moment';
 
 import TimePicker from 'rc-time-picker';
 
-const showSecond = true;
+const showSecond = false;
 const str = showSecond ? 'HH:mm:ss' : 'HH:mm';
 
 
@@ -21,6 +21,7 @@ ReactDom.render(
   <TimePicker
     style={{ width: 100 }}
     showSecond={showSecond}
+    showAMPM={true}
     defaultValue={moment()}
     className="xxx"
     onChange={onChange}

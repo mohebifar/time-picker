@@ -77,7 +77,7 @@ const Panel = React.createClass({
   render() {
     const {
       prefixCls, placeholder, disabledHours, disabledMinutes,
-      disabledSeconds, hideDisabledOptions, allowEmpty, showHour, showSecond,
+      disabledSeconds, hideDisabledOptions, allowEmpty, showHour, showSecond, showAMPM,
       format, defaultOpenValue, clearText, onEsc,
     } = this.props;
     const {
@@ -118,6 +118,7 @@ const Panel = React.createClass({
           defaultOpenValue={defaultOpenValue}
           format={format}
           onChange={this.onChange}
+          showAMPM={showAMPM}
           showHour={showHour}
           showSecond={showSecond}
           hourOptions={hourOptions}

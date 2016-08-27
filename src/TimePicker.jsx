@@ -119,24 +119,30 @@ const Picker = React.createClass({
   },
 
   getFormat() {
-    const format = this.props.format;
-    if (format) {
-      return format;
+    let format = this.props.format;
+
+    if (this.props.format) {
+      format = this.props.format
+    } else if (!this.props.showSecond) {
+      format = 'HH:mm';
+    } else if (!this.props.showHour) {
+      format = 'mm:ss';
+    } else {
+      format = 'HH:mm:ss';
     }
-    if (!this.props.showSecond) {
-      return 'HH:mm';
+    
+    if (this.props.showAMPM) {
+        format = format.replace('HH', 'hh') + ' A';
     }
-    if (!this.props.showHour) {
-      return 'mm:ss';
-    }
-    return 'HH:mm:ss';
+
+    return format;
   },
 
   getPanelElement() {
     const {
       prefixCls, placeholder, disabledHours,
       disabledMinutes, disabledSeconds, hideDisabledOptions,
-      allowEmpty, showHour, showSecond, defaultOpenValue, clearText,
+      allowEmpty, showHour, showSecond, showAMPM, defaultOpenValue, clearText,
     } = this.props;
     return (
       <Panel
@@ -150,6 +156,7 @@ const Picker = React.createClass({
         showHour={showHour}
         onEsc={this.onEsc}
         showSecond={showSecond}
+        showAMPM={showAMPM}
         allowEmpty={allowEmpty}
         format={this.getFormat()}
         placeholder={placeholder}
